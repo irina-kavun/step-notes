@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add new note</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/list-style.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+<div class="container">
+    <div class="col-sm-12 text-right">
+        <a href= "/" class="btn btn-primary btn-lg font-weight-bold mt-5 p-3">Home</a>
+    </div>
+    <div class="form-group">
+        <label for="note-title">TITLE</label>
+        <input type="text" class="form-control" id="note-title" style="font-size: large">
+    </div>
+    <div class="form-group">
+        <label for="note-text">TEXT</label>
+        <textarea type="text" class="form-control" id="note-text" style="font-size: large" placeholder="Enter yours task"></textarea>
+    </div>
+    <div class="text-center">
+        <button id = "createNoteButton" class="btn btn-primary col-12">CREATE NOTE</button>
+    </div>
+</div>
+
+<script src="/js/note/add-note.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row mt-4">
+        <!--Block of buttons-->
+        <div class="col-sm-12 d-flex justify-content-between">
+            <button type="button" id="add-note" class="btn btn-primary btn-lg font-weight-bold p-3">+ add Notes</button>
+            <button type="button" id="add-list" class="btn btn-warning btn-lg font-weight-bold text-secondary p-3">+ add To-Do List</button>
+        </div>
+    </div>
+    <div class="row mt-3 align-items-baseline" id="notesList">
+        <% tmpArray.forEach(note => { %>
+            <div class="note-container col-12 col-md-6 col-lg-4  mt-3" data-id="<%= note._id %>" data-type="<%= note._type %>">
+                <div class="card">
+                    <div class="card-body note-item">
+                        <div class="float-right">
+                            <button type="button" class="btn btn-danger" data-id="<%= note._id %>">x</button>
+                        </div>
+                        <h5 class="card-title font-weight-bold mt-3 h4"><%= note.title %></h5>
+                        <% if (note.inputs) { %>
+                            <% note.inputs.forEach(input => { %>
+                                <% if (!input.status) { %>
+                                    <p class=" card-text font-italic text-secondary mt-3 h6"><%= input.text %></p>
+                                <% } %>
+                            <% }) %>
+                            <% note.inputs.forEach(input => { %>
+                                <% if (input.status) { %>
+                                    <p class=" card-text font-italic text-secondary mt-3 h6"><del><%= input.text %></del></p>
+                                <% } %>
+                            <% }) %>
+
+                        <% } else { %>
+                            <p class="card-text font-italic text-secondary mt-3 h6"><%= note.text %></p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<script src="js/index.js"></script>
+</body>
+</html>

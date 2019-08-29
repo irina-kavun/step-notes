@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add new note</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/list-style.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+</head>
+
+<body>
+<div class="container">
+    <div class="col-sm-12 text-right">
+        <a href= "/"  class="btn btn-primary btn-lg font-weight-bold mt-5 p-3">Home</a>
+    </div>
+    <div class="form-group">
+        <label for="note-title">Title</label>
+        <input type="text" class="form-control" id="note-title" style="font-size: large" value=" <%= list.title %>">
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="border border-danger rounded p-3" id="uncompleted_tasks">
+                <h3 class="text-danger text-center" >Uncompleted tasks</h3>
+                <div class="container-for-task-item">
+                    <% list.inputs.forEach((task) => { %>
+                        <div class="funkyradio">
+                            <div class="funkyradio-success">
+                                <% if (!task.status) { %>
+                                    <input class="checkbox" type="checkbox" name="checkbox" id= '<%= task._id %>' >
+                                    <label class="task" for='<%= task._id %>'><%= task.text %></label>
+                                    <span class="<%= task._id %> close-btn bg-white"><span class="glyphicon glyphicon-remove text-danger"></span></span>
+                                    <span class="<%= task._id %> edit-btn bg-white"><span class="glyphicon glyphicon-edit text-warning"></span></span>
+                                <% } %>
+
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+
+            <form method="post">
+                <div class="form-group area-creat-task">
+                    <label for="validate-length">NEW TASK</label>
+                    <div class="input-group" data-validate="length" data-length="5">
+                        <textarea type="text" class="form-control area-label" name="validate-length" id="validate-length" placeholder="Enter yours task" required></textarea>
+                        <span class="input-group-addon success"><span class="glyphicon glyphicon-ok"></span></span>
+                    </div>
+                    <div class = "warning-enter-text  not-active">
+                        Please enter yours text.
+                    </div>
+                </div>
+            </form>
+            <button data-id="<%= list._id %>" class="btn btn-primary col-xs-12 edit-list-btn">Edit list</button>
+            <button data-id="<%= list._id %>" class="btn btn-danger col-xs-12 mt-3 delete-list-btn">Delete list</button>
+        </div>
+    </div>
+    <div id="completed_tasks" class="border border-primary rounded funkyradio">
+        <h3 class="text-primary text-center">Completed tasks</h3>
+        <div class="container-for-task-item" >
+            <% list.inputs.forEach((task) => { %>
+                <div class="funkyradio">
+                    <div class="funkyradio-success">
+                        <% if (task.status) { %>
+                            <input class="checkbox" type="checkbox" name="checkbox" id= '<%= task._id %>' checked>
+                            <label class="task" for='<%= task._id %>'><%= task.text %></label>
+                            <span class="<%= task._id %> close-btn bg-white"><span class="glyphicon glyphicon-remove text-danger"></span></span>
+                            <span class="<%= task._id %> edit-btn bg-white"><span class="glyphicon glyphicon-edit text-warning"></span></span>
+                        <% } %>
+
+                    </div>
+                </div>
+            <% }) %>
+
+
+        </div>
+    </div>
+</div>
+<script src="/js/list/edit-list.js"></script>
+</body>
+</html>
